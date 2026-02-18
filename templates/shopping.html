@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaiju Battle</title>
+
+  <style>
+    body{
+      margin:0;
+      padding:0;
+      background-color:#bdbdbd;
+      font-family:Arial, sans-serif;
+      color:#111;
+    }
+
+    h1{
+      font-size:3.6rem;
+      margin:40px 0 12px 0;
+      letter-spacing:6px;
+      text-transform:uppercase;
+      text-shadow:2px 2px 0 #000, 4px 4px 0 rgba(0,0,0,0.35);
+      text-align:center;
+    }
+
+    .store-container{
+      max-width:1200px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .store-container p{
+      margin:0 0 24px 0;
+    }
+
+    /* GRID: images side by side */
+    .items-row{
+      display:flex;
+      justify-content:center;
+      gap:24px;
+      flex-wrap:wrap;
+    }
+
+    .item-card{
+      width:260px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
+
+    /* IMPORTANT: target only store images, not ALL images */
+    .item-card img{
+      width:260px;
+      height:340px;
+      object-fit:cover;
+      border:4px solid #000;
+      box-shadow:6px 6px 0 #000;
+      background:#000;
+      display:block;
+    }
+
+    .item-card button{
+      width:100%;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="{{ url_for('store') }}">Home</a>
+ 
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+  <div class="store-container">
+    <h1>Item Store</h1>
+    <p>Here you can buy lots of items</p>
+
+    <div class="items-row">
+      <div class="item-card">
+        <img src="{{ url_for('static', filename='img/book.jpg') }}" alt="Book">
+        <button type="button">Buy Book</button>
+      </div>
+
+      <div class="item-card">
+        <img src="{{ url_for('static', filename='img/desk.jpg') }}" alt="Desk">
+        <button type="button">Buy Desk</button>
+      </div>
+
+      <div class="item-card">
+        <img src="{{ url_for('static', filename='img/coffee_mug.jpg') }}" alt="Coffee mug">
+        <button type="button">Buy Coffee Mug</button>
+      </div>
+
+      <div class="item-card">
+        <img src="{{ url_for('static', filename='img/laptop.jpg') }}" alt="Laptop">
+        <button type="button">Buy Laptop</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
