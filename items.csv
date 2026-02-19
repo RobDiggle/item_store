@@ -1,0 +1,6 @@
+name, quantity, price, in_stock
+
+"Book", 100, 12, True
+"Desk", 100, 40, True
+"Coffee mug", 100, 10, True
+"Laptop", 20, 100, True

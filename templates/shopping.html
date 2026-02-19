@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kaiju Battle</title>
+  <title>Store Shopping Page</title>
 
   <style>
     body{
@@ -86,29 +86,71 @@
 
   <div class="store-container">
     <h1>Item Store</h1>
-    <p>Here you can buy lots of items</p>
+    <p>You start with $100 USD. Each purchased item is added to your shopping cart.</p>
 
-    <div class="items-row">
-      <div class="item-card">
-        <img src="{{ url_for('static', filename='img/book.jpg') }}" alt="Book">
-        <button type="button">Buy Book</button>
-      </div>
-
-      <div class="item-card">
-        <img src="{{ url_for('static', filename='img/desk.jpg') }}" alt="Desk">
-        <button type="button">Buy Desk</button>
-      </div>
-
-      <div class="item-card">
-        <img src="{{ url_for('static', filename='img/coffee_mug.jpg') }}" alt="Coffee mug">
-        <button type="button">Buy Coffee Mug</button>
-      </div>
-
-      <div class="item-card">
-        <img src="{{ url_for('static', filename='img/laptop.jpg') }}" alt="Laptop">
-        <button type="button">Buy Laptop</button>
-      </div>
+<div class="items-row">
+    <div class="item-card">
+        <img src="{{ url_for('static', filename='img/book.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="book">
+                Buy Book
+            </button>
+        </form>
     </div>
+
+        <div class="item-card">
+        <img src="{{ url_for('static', filename='img/desk.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="desk">
+                Buy Desk
+            </button>
+        </form>
+    </div>
+
+        <div class="item-card">
+        <img src="{{ url_for('static', filename='img/coffee_mug.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="coffee mug">
+                Buy Coffee Mug
+            </button>
+        </form>
+    </div>
+
+        <div class="item-card">
+        <img src="{{ url_for('static', filename='img/laptop.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="laptop">
+                Buy Laptop
+            </button>
+        </form>
+    </div>
+
+
+            <form method="POST">
+            <button type="submit"
+                    name="purchase_choice"
+                    value="yes">
+            PURCHASE ITEM 
+            </button>
+            </form>
+
+
+    </div>
+    <p>{{ message }}</p>
+    <p>{{ purchase_message }}</p>
+
+
   </div>
+
+  </div>
+
 </body>
 </html>
