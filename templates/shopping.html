@@ -74,9 +74,15 @@
   <div class="nav-inner">
     <div class="nav-links">
       <a href="{{ url_for('store') }}">Home</a>
- 
     </div>
-  </div>
+        <form method="POST">
+            <button type="submit"
+                    name="clear_cart"
+                    value="restart">
+                Clear cart, Refund items
+            </button>
+        </form>
+    </div>
 </nav>
 
 
@@ -95,7 +101,7 @@
             <button type="submit"
                     name="choice"
                     value="book">
-                Buy Book
+                Select Book
             </button>
         </form>
     </div>
@@ -106,7 +112,7 @@
             <button type="submit"
                     name="choice"
                     value="desk">
-                Buy Desk
+                Select Desk
             </button>
         </form>
     </div>
@@ -117,7 +123,7 @@
             <button type="submit"
                     name="choice"
                     value="coffee mug">
-                Buy Coffee Mug
+                Select Coffee Mug
             </button>
         </form>
     </div>
@@ -128,7 +134,7 @@
             <button type="submit"
                     name="choice"
                     value="laptop">
-                Buy Laptop
+                Select Laptop
             </button>
         </form>
     </div>
@@ -137,7 +143,7 @@
             <form method="POST">
             <button type="submit"
                     name="purchase_choice"
-                    value="yes">
+                    value="{{ selected_item }}">
             PURCHASE ITEM 
             </button>
             </form>
@@ -146,6 +152,7 @@
     </div>
     <p>{{ message }}</p>
     <p>{{ purchase_message }}</p>
+    <h2>Shopping cart:</h2><p>{{ shopping_cart }}</p>
 
 
   </div>

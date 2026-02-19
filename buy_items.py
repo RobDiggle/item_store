@@ -1,4 +1,3 @@
-money = 100
 
 class store_item:
     def __init__(self, name, quantity, price, in_stock):
@@ -27,10 +26,10 @@ class store_item:
                 print("Item not purchased.\n")
         return money
 
-shopping_cart = []
-
 ########
 ######## ACTUAL WORKING CODE BELOW
+
+money = 100
 
 items = [
      store_item("Book", 100, 12, True),
@@ -39,23 +38,21 @@ items = [
      store_item("Laptop", 20, 100, True)
         ]
 
+shopping_cart = []
+
 #This, and the route, are they key functions making the buttons work.
 def item_choice_made(choice):
     for item in items:
         if item.name.lower() == choice:
             message = f"You have selected: {item.name} \n\n. The item price is ${item.price}.00\n"
             if item.in_stock == True:
-                in_stock_query = f". {choice} is currently in stock.\n"
-    return message + in_stock_query + purchase_option()
+                in_stock_query = f". {choice} is currently in stock.\n Would you like to purchase this item?"
+    return message + in_stock_query 
 
-
-def purchase_option():
-            return f"Would you like to purchase this item?"
-
-def purchase_choice_made(purchase_choice):
-        if purchase_choice: # and money >= self.price:
-             #   money -= self.price
-                purchase_message = f"\nYou have purchased a {item.name}!\nYou have $100.00 left.\n"
+def purchase_choice_made(selected_item):
+               #   money -= self.
+               # shopping_cart.append(choice.name)
+                purchase_message = f"\nYou have purchased a {selected_item}!\nYou have $100.00 left.\n"
                 return purchase_message
                  
 
