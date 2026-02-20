@@ -27,14 +27,22 @@ def shopping():
                 session["shopping_cart"] = []
                 session["message"] = ""
                 session["selected_item"] = None
+                session["money"] = 100
+
+# Getting the MONEY working
+        if request.method == "POST":
+             money= request.form.get("money")
+             if money: 
+                  session["money"] = money
 
 # Making the choice buttons work
         if request.method == "POST":
                 for item in items:
                     choice = request.form.get("choice")
                     if item.name.lower() == choice:
-                        session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: {item.price}"
+                        session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: ${item.price}.00"
                         session["shopping_cart"].append(choice)
+                        session["money"] -= item.price
 
 
 # Making sure I understand how buttons work
@@ -44,11 +52,6 @@ def shopping():
                   session["message"] = "I am going to win."
                   session["shopping_cart"].append("WIN")
 
-# Getting the MONEY working
-        if request.method == "POST":
-             money= request.form.get("money")
-             if money: 
-                  session["money"] = money
 
         
         print("SESSION:", dict(session))
