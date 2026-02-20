@@ -7,6 +7,10 @@ app.secret_key = "dev2"
 def store():
         return render_template("home.html")
 
+@app.route("/checkout")
+def checkout():
+        return render_template("checkout.html")
+
 @app.route("/shopping", methods=["GET", "POST"])
 def shopping():
 # Clear shopping cart button logic
@@ -56,6 +60,7 @@ def shopping():
              if win: 
                   session["message"] = "I am going to win."
                   session["shopping_cart"].append("WIN")
+                  session["money"] += 10
 
 
         
