@@ -35,18 +35,18 @@ def shopping():
              if money: 
                   session["money"] = money
 
-# Making the choice buttons work
+# Making the choice buttons 
+
         if request.method == "POST":
+                choice = request.form.get("choice")
                 for item in items:
-                    choice = request.form.get("choice")
                     if item.name.lower() == choice:
-                        session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: ${item.price}.00"
-                        session["shopping_cart"].append(choice)
-                        session["money"] -= item.price
-                        if session["money"] < item.price:
+                        if session["money"] >= item.price:
+                            session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: ${item.price}.00"
+                            session["shopping_cart"].append(choice)
+                            session["money"] -= item.price
+                        else:
                             session["message"] = "You have insufficient funds for this transaction. "
-                            session["money"] = session["money"] + item.price
-                            session["shopping_cart"].pop()
                             break
 
 
