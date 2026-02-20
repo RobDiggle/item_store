@@ -82,6 +82,20 @@
                 Clear cart, Refund items
             </button>
         </form>
+                    <form method="POST">
+            <button type="submit"
+                    name="purchase_choice"
+                    value="{{ selected_item }}">
+            Purchase selected item
+            </button>
+            </form>
+                  <form method="POST">
+            <button type="submit"
+                    name="win"
+                    value="inveitabile">
+            Win?
+            </button>
+            </form>
     </div>
 </nav>
 
@@ -140,19 +154,16 @@
     </div>
 
 
-            <form method="POST">
-            <button type="submit"
-                    name="purchase_choice"
-                    value="{{ selected_item }}">
-            PURCHASE ITEM 
-            </button>
-            </form>
 
 
-    </div>
+
+    </div>        
+    <p>Money available for purchases ${{ money }}.00</p>
     <p>{{ message }}</p>
-    <p>{{ purchase_message }}</p>
     <h2>Shopping cart:</h2><p>{{ shopping_cart }}</p>
+
+
+
 
 
   </div>

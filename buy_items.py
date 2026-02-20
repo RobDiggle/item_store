@@ -28,7 +28,8 @@ class store_item:
 
 ########
 ######## ACTUAL WORKING CODE BELOW
-
+# if you cut out the next  line then local variable message is not associated with a value
+message = ''
 money = 100
 
 items = [
@@ -47,12 +48,19 @@ def item_choice_made(choice):
             message = f"You have selected: {item.name} \n\n. The item price is ${item.price}.00\n"
             if item.in_stock == True:
                 in_stock_query = f". {choice} is currently in stock.\n Would you like to purchase this item?"
-    return message + in_stock_query 
+                return message + in_stock_query
+                # if the user says purchase the item then:
+                    #output: return message (replacing above message), saying the item has been purchased, then
+                    # append the item to the shopping cart and subtract the cost of the item from the money total
+                # elif the user says purchase the item but does not have enough funds:
+                # output: return message saying the user does not have enough funds.
+            if choice and money >= item.price:
+                message = f"{item.name} has been purchased." 
+                shopping_cart.append(choice)
+            elif choice and money <= item.price:
+                message = f"You lack sufficient funds to purchase this item."
 
-def purchase_choice_made(selected_item):
-               #   money -= self.
-               # shopping_cart.append(choice.name)
-                purchase_message = f"\nYou have purchased a {selected_item}!\nYou have $100.00 left.\n"
-                return purchase_message
-                 
+
+
+     
 

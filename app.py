@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, session
-from buy_items import items, item_choice_made, purchase_choice_made, money
-
+from buy_items import items
 app = Flask(__name__)
 app.secret_key = "dev2"
-
 
 @app.route("/store")
 def store():
@@ -11,6 +9,7 @@ def store():
 
 @app.route("/shopping", methods=["GET", "POST"])
 def shopping():
+# Clear shopping cart button logic
         if "money" not in session:
             session["money"] = 100
 
@@ -20,36 +19,45 @@ def shopping():
         if "selected_item" not in session:
             session["selected_item"] = None
 
-        
-        # if you cut out the next  line then local variable message is not associated with a value
-        message = 'CLICK ON A BUTTON TO LEARN ABOUT THE PRODUCT'
-        purchase_message = session.get("purchase_message", "")
+        if "message" not in session:
+             session["message"] = ''
 
         if request.method == "POST":
                if request.form.get("clear_cart"):
                 session["shopping_cart"] = []
-                session["purchase_message"] = ""
+                session["message"] = ""
                 session["selected_item"] = None
 
-               choice = request.form.get("choice")
-               if choice:
-                    session["selected_item"] = choice
-                    message = item_choice_made(choice)
+# Making the choice buttons work
+        if request.method == "POST":
+                choice = request.form.get("choice")
+                if choice:
+                     session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: {choice.price}"
+                     session["shopping_cart"].append(choice)
 
-               purchase_choice = request.form.get("purchase_choice") 
-               if purchase_choice: # and money >= item.price:
-                        print("SELECTED ITEM FROM SESSION:", session.get("selected_item"))
-                        #session["money"] -= item.price
-                        session["shopping_cart"].append(session["selected_item"])
-                        message = ''
-                        session["purchase_message"] = purchase_choice_made(purchase_choice)
 
+# Making sure I understand how buttons work
+        if request.method == "POST":
+             win= request.form.get("win")
+             if win: 
+                  session["message"] = "I am going to win."
+                  session["shopping_cart"].append("WIN")
+
+# Getting the MONEY working
+        if request.method == "POST":
+             money= request.form.get("money")
+             if money: 
+                  session["money"] = money
+
+        
         print("SESSION:", dict(session))
         return render_template("shopping.html", 
-                               items=items, message=message, 
-                               purchase_message=purchase_message,
+                               items=items,
                                 selected_item=session.get("selected_item"),
-                                shopping_cart=session.get("shopping_cart"))
+                                shopping_cart=session.get("shopping_cart"),
+                                message=session["message"],
+                                money=session["money"]
+                                )
 
 
 if __name__ == "__main__":
