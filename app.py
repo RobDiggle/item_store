@@ -30,10 +30,11 @@ def shopping():
 
 # Making the choice buttons work
         if request.method == "POST":
-                choice = request.form.get("choice")
-                if choice:
-                     session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: {choice.price}"
-                     session["shopping_cart"].append(choice)
+                for item in items:
+                    choice = request.form.get("choice")
+                    if item.name.lower() == choice:
+                        session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: {item.price}"
+                        session["shopping_cart"].append(choice)
 
 
 # Making sure I understand how buttons work
