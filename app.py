@@ -125,7 +125,6 @@ def food_shopping():
                             session["message"] = "You have insufficient funds for this transaction. "
                             break
 
-
 # Making sure I understand how buttons work
         if request.method == "POST":
              win= request.form.get("win")
@@ -138,6 +137,74 @@ def food_shopping():
         
         print("SESSION:", dict(session))
         return render_template("food_shopping.html", 
+                                items=items,
+                                selected_item=session.get("selected_item"),
+                                shopping_cart=session.get("shopping_cart"),
+                                message=session["message"],
+                                money=session["money"]
+                                )
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5007)
+
+### Copying and pasting the shopping page for the 'tech shopping' page
+
+@app.route("/tech_shopping", methods=["GET", "POST"])
+def tech_shopping():
+# Clear shopping cart button logic
+        if "money" not in session:
+            session["money"] = 100
+
+        if "shopping_cart" not in session:
+            session["shopping_cart"] = []
+
+        if "selected_item" not in session:
+            session["selected_item"] = None
+
+        if "message" not in session:
+             session["message"] = ''
+
+        if request.method == "POST":
+               if request.form.get("clear_cart"):
+                session["shopping_cart"] = []
+                session["message"] = ""
+                session["selected_item"] = None
+                session["money"] = 100
+
+# Getting the MONEY working
+        if request.method == "POST":
+             money= request.form.get("money")
+             if money: 
+                  session["money"] = money
+
+# Making the choice buttons 
+
+        if request.method == "POST":
+                choice = request.form.get("choice")
+                for item in items:
+                    if item.name.lower() == choice:
+                        if session["money"] >= item.price:
+                            session["message"] = f"ITEM SELECTED: {choice}. COST OF ITEM: ${item.price}.00"
+                            session["shopping_cart"].append(choice)
+                            session["money"] -= item.price
+                        else:
+                            session["message"] = "You have insufficient funds for this transaction. "
+                            break
+
+
+
+# Making sure I understand how buttons work
+        if request.method == "POST":
+             win= request.form.get("win")
+             if win: 
+                  session["message"] = "I am going to win."
+                  session["shopping_cart"].append("WIN")
+                  session["money"] += 10
+
+
+        
+        print("SESSION:", dict(session))
+        return render_template("tech_shopping.html", 
                                 items=items,
                                 selected_item=session.get("selected_item"),
                                 shopping_cart=session.get("shopping_cart"),
