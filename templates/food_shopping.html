@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Food Shopping Page</title>
+
+  <style>
+    body{
+      margin:0;
+      padding:0;
+      background-color:#bdbdbd;
+      font-family:Arial, sans-serif;
+      color:#111;
+    }
+
+    h1{
+      font-size:3.6rem;
+      margin:40px 0 12px 0;
+      letter-spacing:6px;
+      text-transform:uppercase;
+      text-shadow:2px 2px 0 #000, 4px 4px 0 rgba(0,0,0,0.35);
+      text-align:center;
+    }
+
+    .store-container{
+      max-width:1200px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .store-container p{
+      margin:0 0 24px 0;
+    }
+
+    /* GRID: images side by side */
+    .items-row{
+      display:flex;
+      justify-content:center;
+      gap:24px;
+      flex-wrap:wrap;
+    }
+
+    .item-card{
+      width:260px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
+
+    /* IMPORTANT: target only store images, not ALL images */
+    .item-card img{
+      width:260px;
+      height:340px;
+      object-fit:cover;
+      border:4px solid #000;
+      box-shadow:6px 6px 0 #000;
+      background:#000;
+      display:block;
+    }
+
+    .item-card button{
+      width:100%;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="{{ url_for('store') }}">Home</a>
+    </div>
+        <form method="POST">
+            <button type="submit"
+                    name="clear_cart"
+                    value="restart">
+                Clear cart, Refund items
+            </button>
+        </form>
+
+            </form>
+                  <form method="POST">
+            <button type="submit"
+                    name="win"
+                    value="inveitabile">
+            Win?
+            </button>
+            </form>
+    </div>
+</nav>
+
+
+
+
+
+
+  <div class="store-container">
+    <h1>Item Store</h1>
+    <p>You start with $100 USD. Each purchased item is added to your shopping cart.</p>
+
+<div class="items-row">
+    <div class="item-card">
+        <img src="{{ url_for('static', filename='img/meat.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="book">
+                Select Meat
+            </button>
+        </form>
+    </div>
+
+        <div class="item-card">
+        <img src="{{ url_for('static', filename='img/cereal.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="desk">
+                Select Cereal
+            </button>
+        </form>
+    </div>
+
+        <div class="item-card">
+        <img src="{{ url_for('static', filename='img/fruit.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="fruit">
+                Select Fruit
+            </button>
+        </form>
+    </div>
+
+        <div class="item-card">
+        <img src="{{ url_for('static', filename='img/milk.jpg') }}">
+        <form method="POST">
+            <button type="submit"
+                    name="choice"
+                    value="laptop">
+                Select Milk
+            </button>
+        </form>
+    </div>
+
+
+
+
+
+    </div>        
+    <p>Money available for purchases ${{ money }}.00</p>
+    <p>{{ message }}</p>
+    <h2>Shopping cart:</h2><p>{{ shopping_cart }}</p>
+
+
+
+
+
+  </div>
+                <a href="{{ url_for('checkout') }}">
+                      <button type="button">Checkout</button>     
+                </a>   
+  </div>
+
+</body>
+</html>

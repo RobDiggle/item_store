@@ -183,6 +183,13 @@ img {
                 <div class="img">
                 <h1>Thanks for shopping at our store!</h1>
 =                      <img src="{{ url_for('static', filename='img/checkout.jpg') }}" alt="mothra">
+
+
+    <h2>Shopping cart:</h2><p>{{ shopping_cart }}</p>
+
+
+
+
                 <a href="{{ url_for('shopping') }}">
                       <button type="button">Go back and buy more things</button>     
                 </a>             

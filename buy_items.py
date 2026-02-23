@@ -7,8 +7,6 @@ class store_item:
         self.in_stock = in_stock
 
 # if you cut out the next  line then local variable message is not associated with a value
-message = ''
-money = 100
 
 items = [
      store_item("Book", 100, 12, True),
@@ -18,6 +16,8 @@ items = [
         ]
 
 shopping_cart = []
+message = ''
+
 
 
 
